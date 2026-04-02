@@ -88,6 +88,14 @@ class TTSFactory:
                 media_type=kwargs.get("media_type"),
                 streaming_mode=kwargs.get("streaming_mode"),
             )
+        elif engine_type == "f5_tts":
+            from .f5_tts import TTSEngine as F5TTSEngine
+
+            return F5TTSEngine(
+                api_url=kwargs.get("api_url"),
+                speed=kwargs.get("speed", 1.0),
+                remove_silence=kwargs.get("remove_silence", False),
+            )
         elif engine_type == "siliconflow_tts":
             from .siliconflow_tts import SiliconFlowTTS
 

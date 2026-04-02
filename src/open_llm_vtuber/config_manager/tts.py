@@ -308,6 +308,26 @@ class GPTSoVITSConfig(I18nMixin):
     }
 
 
+class F5TTSConfig(I18nMixin):
+    """Configuration for F5-TTS over HTTP."""
+
+    api_url: str = Field(..., alias="api_url")
+    speed: float = Field(1.0, alias="speed")
+    remove_silence: bool = Field(False, alias="remove_silence")
+
+    DESCRIPTIONS: ClassVar[Dict[str, Description]] = {
+        "api_url": Description(
+            en="URL of the F5-TTS HTTP API endpoint", zh="F5-TTS HTTP API 端点的 URL"
+        ),
+        "speed": Description(
+            en="Speech speed multiplier for synthesis", zh="语音合成速度倍数"
+        ),
+        "remove_silence": Description(
+            en="Remove long silences from generated audio", zh="移除生成音频中的长静音"
+        ),
+    }
+
+
 class FishAPITTSConfig(I18nMixin):
     """Configuration for Fish API TTS."""
 
@@ -693,6 +713,7 @@ class TTSConfig(I18nMixin):
         "coqui_tts",
         "x_tts",
         "gpt_sovits_tts",
+        "f5_tts",
         "fish_api_tts",
         "sherpa_onnx_tts",
         "siliconflow_tts",
@@ -713,6 +734,7 @@ class TTSConfig(I18nMixin):
     coqui_tts: Optional[CoquiTTSConfig] = Field(None, alias="coqui_tts")
     x_tts: Optional[XTTSConfig] = Field(None, alias="x_tts")
     gpt_sovits_tts: Optional[GPTSoVITSConfig] = Field(None, alias="gpt_sovits")
+    f5_tts: Optional[F5TTSConfig] = Field(None, alias="f5_tts")
     fish_api_tts: Optional[FishAPITTSConfig] = Field(None, alias="fish_api_tts")
     sherpa_onnx_tts: Optional[SherpaOnnxTTSConfig] = Field(
         None, alias="sherpa_onnx_tts"
@@ -746,6 +768,7 @@ class TTSConfig(I18nMixin):
         "gpt_sovits_tts": Description(
             en="Configuration for GPT-SoVITS", zh="GPT-SoVITS 配置"
         ),
+        "f5_tts": Description(en="Configuration for F5-TTS", zh="F5-TTS 配置"),
         "fish_api_tts": Description(
             en="Configuration for Fish API TTS", zh="Fish API TTS 配置"
         ),
@@ -794,6 +817,8 @@ class TTSConfig(I18nMixin):
             values.x_tts.model_validate(values.x_tts.model_dump())
         elif tts_model == "gpt_sovits_tts" and values.gpt_sovits_tts is not None:
             values.gpt_sovits_tts.model_validate(values.gpt_sovits_tts.model_dump())
+        elif tts_model == "f5_tts" and values.f5_tts is not None:
+            values.f5_tts.model_validate(values.f5_tts.model_dump())
         elif tts_model == "fish_api_tts" and values.fish_api_tts is not None:
             values.fish_api_tts.model_validate(values.fish_api_tts.model_dump())
         elif tts_model == "sherpa_onnx_tts" and values.sherpa_onnx_tts is not None:

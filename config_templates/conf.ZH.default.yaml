@@ -273,7 +273,7 @@ character_config:
     # 文本转语音模型选项：
     #   'azure_tts', 'pyttsx3_tts', 'edge_tts', 'bark_tts',
     #   'cosyvoice_tts', 'melo_tts', 'coqui_tts', 'piper_tts',
-    #   'fish_api_tts', 'x_tts', 'gpt_sovits_tts', 'sherpa_onnx_tts'
+    #   'fish_api_tts', 'x_tts', 'gpt_sovits_tts', 'f5_tts', 'sherpa_onnx_tts'
     #   'minimax_tts', 'elevenlabs_tts', 'cartesia_tts'
 
     siliconflow_tts:
@@ -362,6 +362,11 @@ character_config:
       batch_size: '1' # 批处理大小
       media_type: 'wav' # 媒体类型
       streaming_mode: 'false' # 流模式
+
+    f5_tts:
+      api_url: 'http://127.0.0.1:9880/tts'
+      speed: 1.0
+      remove_silence: false
 
     fish_api_tts:
       # Fish TTS API 的 API 密钥。
