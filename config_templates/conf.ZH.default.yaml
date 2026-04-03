@@ -350,6 +350,13 @@ character_config:
       api_url: 'http://127.0.0.1:8020/tts_to_audio' # API URL
       speaker_wav: 'female' # 说话人 WAV 文件
       language: 'en' # 语言
+      speed: 0.96 # 语速倍数
+      temperature: 0.65 # 采样温度
+      top_p: 0.9 # top-p 采样
+      top_k: 50 # top-k 采样
+      repetition_penalty: 2.0 # 重复惩罚
+      length_penalty: 1.0 # 长度惩罚
+      enable_text_splitting: false # 是否自动切句
 
     gpt_sovits_tts:
       # 将参考音频放到 GPT-Sovits 的根路径，或在此处设置路径

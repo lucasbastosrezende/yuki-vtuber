@@ -73,6 +73,13 @@ class TTSFactory:
                 api_url=kwargs.get("api_url"),
                 speaker_wav=kwargs.get("speaker_wav"),
                 language=kwargs.get("language"),
+                speed=kwargs.get("speed", 0.96),
+                temperature=kwargs.get("temperature", 0.65),
+                top_p=kwargs.get("top_p", 0.9),
+                top_k=kwargs.get("top_k", 50),
+                repetition_penalty=kwargs.get("repetition_penalty", 2.0),
+                length_penalty=kwargs.get("length_penalty", 1.0),
+                enable_text_splitting=kwargs.get("enable_text_splitting", False),
             )
         elif engine_type == "gpt_sovits_tts":
             from .gpt_sovits_tts import TTSEngine as GSVEngine

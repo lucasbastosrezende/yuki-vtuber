@@ -262,6 +262,13 @@ class XTTSConfig(I18nMixin):
     api_url: str = Field(..., alias="api_url")
     speaker_wav: str = Field(..., alias="speaker_wav")
     language: str = Field(..., alias="language")
+    speed: float = Field(0.96, alias="speed")
+    temperature: float = Field(0.65, alias="temperature")
+    top_p: float = Field(0.9, alias="top_p")
+    top_k: int = Field(50, alias="top_k")
+    repetition_penalty: float = Field(2.0, alias="repetition_penalty")
+    length_penalty: float = Field(1.0, alias="length_penalty")
+    enable_text_splitting: bool = Field(False, alias="enable_text_splitting")
 
     DESCRIPTIONS: ClassVar[Dict[str, Description]] = {
         "api_url": Description(
@@ -272,6 +279,31 @@ class XTTSConfig(I18nMixin):
         ),
         "language": Description(
             en="Language code (e.g., en, zh)", zh="语言代码（如 en、zh）"
+        ),
+        "speed": Description(en="Speech speed multiplier for XTTS", zh="XTTS 语速倍数"),
+        "temperature": Description(
+            en="Sampling temperature for XTTS generation",
+            zh="XTTS 生成的采样温度",
+        ),
+        "top_p": Description(
+            en="Top-p sampling value for XTTS generation",
+            zh="XTTS 生成的 top-p 采样值",
+        ),
+        "top_k": Description(
+            en="Top-k sampling value for XTTS generation",
+            zh="XTTS 生成的 top-k 采样值",
+        ),
+        "repetition_penalty": Description(
+            en="Penalty to reduce repetitive XTTS outputs",
+            zh="降低 XTTS 重复输出的惩罚值",
+        ),
+        "length_penalty": Description(
+            en="Length penalty for XTTS generation",
+            zh="XTTS 生成的长度惩罚",
+        ),
+        "enable_text_splitting": Description(
+            en="Whether XTTS should split text into shorter sentences",
+            zh="XTTS 是否将文本切分为更短的句子",
         ),
     }
 
